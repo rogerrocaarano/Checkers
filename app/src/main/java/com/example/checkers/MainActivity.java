@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageButton[][] BoardButtons;
     private CheckersGame Checkers;
     private String DebugLog;
+    private boolean isBlackTurn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +28,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 int BoardResID = getResources().getIdentifier(BoardButtonID, "id", getPackageName());
                 BoardButtons[i][j] = findViewById(BoardResID);
             }
-        updateBoard();
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++) {
                 BoardButtons[i][j].setOnClickListener(this);
             }
+        updateBoard();
+        isBlackTurn=false;
     }
 
     public void updateBoard() {
@@ -59,10 +61,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
     }
-
+    /* TODO: Need exception for no piece at Pos */
     public void showAvailableMovements(int[]Pos) {
         resetButtonsColor();
-        boolean[][]AvailableMovementBoard=Checkers.getAvailableMovementBoard(Pos,true);
+        boolean[][]AvailableMovementBoard=new boolean[8][8];
+        if (isBlackTurn) {
+            AvailableMovementBoard=Checkers.getAvailableMovementBoard(Pos,true);
+        } else {
+            AvailableMovementBoard=Checkers.getAvailableMovementBoard(Pos,false);
+        }
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++) {
                 if (AvailableMovementBoard[i][j]) {
@@ -86,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (view.getId()==BoardButtons[i][j].getId()) {
                     ClickedButtonPos[0]=i;
                     ClickedButtonPos[1]=j;
-                    Toast.makeText(this,"button"+String.valueOf(i)+String.valueOf(j),Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this,"button"+String.valueOf(i)+String.valueOf(j),Toast.LENGTH_SHORT).show();
                 }
             }
         showAvailableMovements(ClickedButtonPos);
