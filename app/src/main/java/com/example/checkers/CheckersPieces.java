@@ -1,15 +1,20 @@
 package com.example.checkers;
 
+import android.os.Debug;
+import android.util.Log;
+
 public class CheckersPieces {
 private boolean Black;
 private int Board[][];
 private int PiecesCount;
+private String DebugLog;
 public CheckersPieces() {
     Board=new int[8][8];
     Black=true;
     PiecesCount=0;
 }
 public CheckersPieces(boolean PiecesColor, int NumberOfPieces) {
+    Log.d(DebugLog, "LOG: Initializing PiecesColor="+String.valueOf(PiecesColor));
     Black=PiecesColor;
     boolean BlackSw=true;
     Board = new int[8][8];
@@ -21,6 +26,7 @@ public CheckersPieces(boolean PiecesColor, int NumberOfPieces) {
                 for (int j = 0; j < 8; j++) {
                     if (BlackSw && Pieces>0) {
                         Board[i][j] = 1;
+                        Log.d(DebugLog,"LOG: Board"+String.valueOf(i)+String.valueOf(j)+": "+String.valueOf(Board[i][j]));
                         Pieces=Pieces-1;
                     } else Board[i][j]=0;
                     BlackSw = !BlackSw;
@@ -33,6 +39,7 @@ public CheckersPieces(boolean PiecesColor, int NumberOfPieces) {
                 for (int j = 7; j >= 0; j--) {
                     if (BlackSw && Pieces>0) {
                         Board[i][j] = 1;
+                        Log.d(DebugLog,"LOG: Board"+String.valueOf(i)+String.valueOf(j)+": "+String.valueOf(Board[i][j]));
                         Pieces=Pieces-1;
                     } else Board[i][j]=0;
                     BlackSw = !BlackSw;

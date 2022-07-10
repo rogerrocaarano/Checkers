@@ -3,12 +3,14 @@ package com.example.checkers;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
     /* Initialize Board */
     private ImageButton[][] BoardButtons;
     private CheckersGame Checkers;
+    private String DebugLog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,27 +34,22 @@ public class MainActivity extends AppCompatActivity {
         for (int i=0;i<8;i++)
             for (int j=0;j<8;j++) {
                 if (BlackBoard[i][j]>0) {
-                    switch (BlackBoard[i][j]) {
-                        case 1:
-                            BoardButtons[i][j].setImageResource(R.drawable.piece_black);
-                        case 2:
-                            BoardButtons[i][j].setImageResource(R.drawable.piece_black_king);
-                    }
+                    Log.d(DebugLog, "LOG: BlackBoard" + String.valueOf(i) + String.valueOf(j) + ": " + String.valueOf(BlackBoard[i][j]));
+                    if (BlackBoard[i][j] == 1)
+                        BoardButtons[i][j].setImageResource(R.drawable.piece_black);
+                    if (BlackBoard[i][j] == 2)
+                        BoardButtons[i][j].setImageResource(R.drawable.piece_black_king);
                 }
                 if (RedBoard[i][j]>0) {
-                    switch (RedBoard[i][j]) {
-                        case 1:
-                            BoardButtons[i][j].setImageResource(R.drawable.piece_red);
-                        case 2:
-                            BoardButtons[i][j].setImageResource(R.drawable.piece_red_king);
-                    }
+                    Log.d(DebugLog, "LOG: RedBoard" + String.valueOf(i) + String.valueOf(j) + ": " + String.valueOf(RedBoard[i][j]));
+                    if (RedBoard[i][j] == 1)
+                        BoardButtons[i][j].setImageResource(R.drawable.piece_red);
+                    if (RedBoard[i][j] == 2)
+                        BoardButtons[i][j].setImageResource(R.drawable.piece_red_king);
                 }
                 if (!Board[i][j]) {
                     BoardButtons[i][j].setImageResource(R.drawable.piece_transparent);
                 }
-
             }
-
-
     }
 }
