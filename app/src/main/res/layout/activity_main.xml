@@ -28,7 +28,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_01"
@@ -38,7 +38,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_02"
@@ -49,7 +49,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_03"
@@ -59,7 +59,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_04"
@@ -70,7 +70,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_05"
@@ -80,7 +80,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_06"
@@ -91,7 +91,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_07"
@@ -101,7 +101,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_10"
@@ -111,10 +111,10 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
-            android:id="@+id/b_11"
+            android:id="@+id/B_11"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:adjustViewBounds="true"
@@ -122,17 +122,17 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
-            android:id="@+id/b_12"
+            android:id="@+id/B_12"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:adjustViewBounds="true"
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_13"
@@ -143,7 +143,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_14"
@@ -153,7 +153,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_15"
@@ -164,7 +164,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_16"
@@ -174,7 +174,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_17"
@@ -185,7 +185,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_20"
@@ -196,7 +196,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_21"
@@ -206,7 +206,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_22"
@@ -217,7 +217,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_23"
@@ -227,7 +227,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_24"
@@ -238,7 +238,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_25"
@@ -248,7 +248,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_26"
@@ -259,7 +259,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_27"
@@ -269,7 +269,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_30"
@@ -279,7 +279,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_31"
@@ -290,7 +290,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_32"
@@ -300,7 +300,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_33"
@@ -311,7 +311,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_34"
@@ -321,7 +321,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_35"
@@ -332,7 +332,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_36"
@@ -342,7 +342,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_37"
@@ -353,7 +353,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_40"
@@ -364,7 +364,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_41"
@@ -374,7 +374,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_42"
@@ -385,7 +385,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_43"
@@ -395,7 +395,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_44"
@@ -406,7 +406,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_45"
@@ -416,7 +416,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_46"
@@ -427,7 +427,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_47"
@@ -437,7 +437,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_50"
@@ -447,7 +447,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_51"
@@ -458,7 +458,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_52"
@@ -468,7 +468,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_53"
@@ -479,7 +479,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_54"
@@ -489,7 +489,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_55"
@@ -500,7 +500,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_56"
@@ -510,7 +510,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_57"
@@ -521,7 +521,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_60"
@@ -532,7 +532,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_61"
@@ -542,7 +542,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_62"
@@ -553,7 +553,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_63"
@@ -563,7 +563,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_64"
@@ -574,7 +574,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_65"
@@ -584,7 +584,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_66"
@@ -595,7 +595,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_67"
@@ -605,7 +605,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_70"
@@ -615,7 +615,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_71"
@@ -626,7 +626,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_72"
@@ -636,7 +636,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_73"
@@ -647,7 +647,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_74"
@@ -657,7 +657,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_75"
@@ -678,7 +678,7 @@
             android:background="#00FFFFFF"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piece_black" />
+            app:srcCompat="@drawable/piece_transparent" />
 
         <ImageButton
             android:id="@+id/B_77"
@@ -689,7 +689,7 @@
             android:clickable="false"
             android:padding="5dp"
             android:scaleType="fitCenter"
-             />
+            app:srcCompat="@drawable/piece_transparent" />
 
 
     </androidx.gridlayout.widget.GridLayout>

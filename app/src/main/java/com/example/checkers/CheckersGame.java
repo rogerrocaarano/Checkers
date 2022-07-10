@@ -2,29 +2,39 @@ package com.example.checkers;
 
 public class CheckersGame {
     private boolean Board[][];
+    private int[][]BlackBoard;
+    private int[][]RedBoard;
     private CheckersPieces BlackPieces;
     private CheckersPieces RedPieces;
     public CheckersGame() {
         Board=new boolean[8][8];
+        BlackBoard=new int[8][8];
+        RedBoard=new int[8][8];
         BlackPieces=new CheckersPieces(true,12);
         RedPieces=new CheckersPieces(false,12);
-        int[][]BlackBoard=BlackPieces.getBoard();
-        int[][]RedBoard= RedPieces.getBoard();
+        updateBoards();
         for (int i=0;i<8;i++)
             for (int j = 0; j < 8; j++) {
                 Board[i][j] = BlackBoard[i][j] > 0 || RedBoard[i][j] > 0;
             }
     }
-
+    public void updateBoards() {
+        BlackBoard=BlackPieces.getBoard();
+        RedBoard=RedPieces.getBoard();
+    }
     public boolean[][] getBoard() {
         return Board;
+    }
+    public int[][] getBlackBoard() {
+        return BlackBoard;
+    }
+    public int[][] getRedBoard() {
+        return RedBoard;
     }
 
     /* TODO: Add king-eating conditions */
     public boolean[][] getCanEatBoard(boolean Color) {
         boolean[][]CanEatBoard=new boolean[8][8];
-        int[][]BlackBoard=BlackPieces.getBoard();
-        int[][]RedBoard=RedPieces.getBoard();
         for (int i=0;i<8;i++)
             for (int j = 0; j < 8; j++) {
                 CanEatBoard[i][j] = false;
