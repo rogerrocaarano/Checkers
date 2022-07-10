@@ -69,7 +69,6 @@ public class CheckersGame {
     }
 
     /* TODO: Add King movement */
-    /* TODO: Need exception for Pos outside of Board Array. */
     public boolean[][] getAvailableMovementBoard(int[] Pos, boolean Color) {
         boolean[][] AvailableMovementBoard = new boolean[8][8];
         for (int i = 0; i < 8; i++)
@@ -78,17 +77,41 @@ public class CheckersGame {
             }
         /* For black Pieces Movement */
         if (Color) {
-            if (!Board[Pos[0] + 1][Pos[1] - 1] && Pos[0] + 1 <= 7 && Pos[1] - 1 >= 0)
-                AvailableMovementBoard[Pos[0] + 1][Pos[1] - 1] = true;
-            if (!Board[Pos[0] + 1][Pos[1] + 1] && Pos[0] + 1 <= 7 && Pos[1] + 1 <= 7)
-                AvailableMovementBoard[Pos[0] + 1][Pos[1] + 1] = true;
+            switch (Pos[1]) {
+                case 0:
+                    if (!Board[Pos[0] + 1][Pos[1] + 1])
+                        AvailableMovementBoard[Pos[0] + 1][Pos[1] + 1] = true;
+                    break;
+                case 7:
+                    if (!Board[Pos[0] + 1][Pos[1] - 1])
+                        AvailableMovementBoard[Pos[0] + 1][Pos[1] - 1] = true;
+                    break;
+                default:
+                    if (!Board[Pos[0] + 1][Pos[1] - 1])
+                        AvailableMovementBoard[Pos[0] + 1][Pos[1] - 1] = true;
+                    if (!Board[Pos[0] + 1][Pos[1] + 1])
+                        AvailableMovementBoard[Pos[0] + 1][Pos[1] + 1] = true;
+                    break;
+            }
         }
         /* For red Pieces Movement */
         if (!Color) {
-            if (!Board[Pos[0] - 1][Pos[1] - 1] && Pos[0] - 1 >= 0 && Pos[1] - 1 >= 0)
-                AvailableMovementBoard[Pos[0] - 1][Pos[1] - 1] = true;
-            if (!Board[Pos[0] - 1][Pos[1] + 1] && Pos[0] - 1 >= 0 && Pos[1] + 1 <= 7)
-                AvailableMovementBoard[Pos[0] - 1][Pos[1] + 1] = true;
+            switch (Pos[1]) {
+                case 0:
+                    if (!Board[Pos[0] - 1][Pos[1] + 1])
+                        AvailableMovementBoard[Pos[0] - 1][Pos[1] + 1] = true;
+                    break;
+                case 7:
+                    if (!Board[Pos[0] - 1][Pos[1] - 1])
+                        AvailableMovementBoard[Pos[0] - 1][Pos[1] - 1] = true;
+                    break;
+                default:
+                    if (!Board[Pos[0] - 1][Pos[1] - 1])
+                        AvailableMovementBoard[Pos[0] - 1][Pos[1] - 1] = true;
+                    if (!Board[Pos[0] - 1][Pos[1] + 1])
+                        AvailableMovementBoard[Pos[0] - 1][Pos[1] + 1] = true;
+                    break;
+            }
         }
         return AvailableMovementBoard;
     }
