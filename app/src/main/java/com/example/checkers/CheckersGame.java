@@ -77,22 +77,22 @@ public class CheckersGame {
                     switch (j) {
                         case 0: case 1: {
                             if (!Board[i - 2][j + 2])
-                                if (BlackBoard[i][j] > 0 && RedBoard[i - 1][j + 1] > 0)
+                                if (RedBoard[i][j] > 0 && BlackBoard[i - 1][j + 1] > 0)
                                     CanEatBoard[i][j] = true;
                             break;
                         }
                         case 6: case 7: {
                             if (!Board[i - 2][j - 2])
-                                if (BlackBoard[i][j] > 0 && RedBoard[i - 1][j - 1] > 0)
+                                if (RedBoard[i][j] > 0 && BlackBoard[i - 1][j - 1] > 0)
                                     CanEatBoard[i][j] = true;
                             break;
                         }
                         default: {
                             if (!Board[i - 2][j - 2])
-                                if (BlackBoard[i][j] > 0 && RedBoard[i - 1][j - 1] > 0)
+                                if (RedBoard[i][j] > 0 && BlackBoard[i - 1][j - 1] > 0)
                                     CanEatBoard[i][j] = true;
                             if (!Board[i - 2][j + 2])
-                                if (BlackBoard[i][j] > 0 && RedBoard[i - 1][j + 1] > 0)
+                                if (RedBoard[i][j] > 0 && BlackBoard[i - 1][j + 1] > 0)
                                     CanEatBoard[i][j] = true;
                         }
                         break;
