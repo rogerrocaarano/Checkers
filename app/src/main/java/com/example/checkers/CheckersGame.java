@@ -14,15 +14,15 @@ public class CheckersGame {
         BlackPieces = new CheckersPieces(true, 12);
         RedPieces = new CheckersPieces(false, 12);
         updateBoards();
-        for (int i = 0; i < 8; i++)
-            for (int j = 0; j < 8; j++) {
-                Board[i][j] = BlackBoard[i][j] > 0 || RedBoard[i][j] > 0;
-            }
     }
 
     public void updateBoards() {
         BlackBoard = BlackPieces.getBoard();
         RedBoard = RedPieces.getBoard();
+        for (int i = 0; i < 8; i++)
+            for (int j = 0; j < 8; j++) {
+                Board[i][j] = BlackBoard[i][j] > 0 || RedBoard[i][j] > 0;
+            }
     }
 
     public boolean[][] getBoard() {
@@ -114,5 +114,12 @@ public class CheckersGame {
             }
         }
         return AvailableMovementBoard;
+    }
+    public void doMove (int[]InitialPos,int[]FinalPos,boolean Color) {
+        if (Color)
+            BlackPieces.Move(InitialPos,FinalPos);
+        if (!Color)
+            RedPieces.Move(InitialPos,FinalPos);
+        updateBoards();
     }
 }

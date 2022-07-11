@@ -16,7 +16,6 @@ public class CheckersPieces {
     }
 
     public CheckersPieces(boolean PiecesColor, int NumberOfPieces) {
-        Log.d(DebugLog, "LOG: Initializing PiecesColor=" + String.valueOf(PiecesColor));
         Black = PiecesColor;
         boolean BlackSw = true;
         Board = new int[8][8];
@@ -28,7 +27,6 @@ public class CheckersPieces {
                 for (int j = 0; j < 8; j++) {
                     if (BlackSw && Pieces > 0) {
                         Board[i][j] = 1;
-                        Log.d(DebugLog, "LOG: Board" + String.valueOf(i) + String.valueOf(j) + ": " + String.valueOf(Board[i][j]));
                         Pieces = Pieces - 1;
                     } else Board[i][j] = 0;
                     BlackSw = !BlackSw;
@@ -41,7 +39,6 @@ public class CheckersPieces {
                 for (int j = 7; j >= 0; j--) {
                     if (BlackSw && Pieces > 0) {
                         Board[i][j] = 1;
-                        Log.d(DebugLog, "LOG: Board" + String.valueOf(i) + String.valueOf(j) + ": " + String.valueOf(Board[i][j]));
                         Pieces = Pieces - 1;
                     } else Board[i][j] = 0;
                     BlackSw = !BlackSw;
