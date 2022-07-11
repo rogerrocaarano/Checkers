@@ -47,22 +47,56 @@ public class CheckersGame {
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++) {
                 /* For black Pieces */
-                if (Color) {
-                    if (i + 2 <= 7 && j - 2 >= 0 && !Board[i + 2][j - 2])
-                        if (BlackBoard[i][j] > 0 && RedBoard[i + 1][j - 1] > 0)
-                            CanEatBoard[i][j] = true;
-                    if (i + 2 <= 7 && j + 2 <= 7 && !Board[i + 2][j + 2])
-                        if (BlackBoard[i][j] > 0 && RedBoard[i + 1][j + 1] > 0)
-                            CanEatBoard[i][j] = true;
+                if (Color && i<=5) {
+                    switch (j) {
+                        case 0: case 1: {
+                            if (!Board[i + 2][j + 2])
+                                if (BlackBoard[i][j] > 0 && RedBoard[i + 1][j + 1] > 0)
+                                    CanEatBoard[i][j] = true;
+                            break;
+                        }
+                        case 6: case 7: {
+                            if (!Board[i + 2][j - 2])
+                                if (BlackBoard[i][j] > 0 && RedBoard[i + 1][j - 1] > 0)
+                                    CanEatBoard[i][j] = true;
+                            break;
+                        }
+                        default: {
+                            if (!Board[i + 2][j - 2])
+                                if (BlackBoard[i][j] > 0 && RedBoard[i + 1][j - 1] > 0)
+                                    CanEatBoard[i][j] = true;
+                            if (!Board[i + 2][j + 2])
+                                if (BlackBoard[i][j] > 0 && RedBoard[i + 1][j + 1] > 0)
+                                    CanEatBoard[i][j] = true;
+                        }
+                        break;
+                    }
                 }
                 /* For red Pieces */
-                if (!Color) {
-                    if (i - 2 >= 0 && j - 2 >= 0 && !Board[i - 2][j - 2])
-                        if (RedBoard[i][j] > 0 && BlackBoard[i - 1][j - 1] > 0)
-                            CanEatBoard[i][j] = true;
-                    if (i - 2 >= 0 && j + 2 <= 7 && !Board[i - 2][j + 2])
-                        if (RedBoard[i][j] > 0 && BlackBoard[i - 1][j + 1] > 0)
-                            CanEatBoard[i][j] = true;
+                if (!Color && i>=2) {
+                    switch (j) {
+                        case 0: case 1: {
+                            if (!Board[i - 2][j + 2])
+                                if (BlackBoard[i][j] > 0 && RedBoard[i - 1][j + 1] > 0)
+                                    CanEatBoard[i][j] = true;
+                            break;
+                        }
+                        case 6: case 7: {
+                            if (!Board[i - 2][j - 2])
+                                if (BlackBoard[i][j] > 0 && RedBoard[i - 1][j - 1] > 0)
+                                    CanEatBoard[i][j] = true;
+                            break;
+                        }
+                        default: {
+                            if (!Board[i - 2][j - 2])
+                                if (BlackBoard[i][j] > 0 && RedBoard[i - 1][j - 1] > 0)
+                                    CanEatBoard[i][j] = true;
+                            if (!Board[i - 2][j + 2])
+                                if (BlackBoard[i][j] > 0 && RedBoard[i - 1][j + 1] > 0)
+                                    CanEatBoard[i][j] = true;
+                        }
+                        break;
+                    }
                 }
             }
         return CanEatBoard;

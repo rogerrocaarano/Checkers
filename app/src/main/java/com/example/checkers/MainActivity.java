@@ -46,19 +46,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         int[] ClickedButtonPos = new int[2];
-        for (int i = 0; i < 8; i++)
-            for (int j = 0; j < 8; j++)
-                if (view.getId() == BoardButtons[i][j].getId()) {
-                    ClickedButtonPos[0] = i;
-                    ClickedButtonPos[1] = j;
-                }
-        Log.d(DebugLog, "LOG: onClick::ValidSelection:"+String.valueOf(ValidSelection)+" Clicked::"+String.valueOf(ClickedButtonPos[0])+String.valueOf(ClickedButtonPos[1]));
-        if (!ValidSelection) {
-            showAvailableMovements(ClickedButtonPos);
+        if (validateCanEat() && !ValidSelection) {
+            showCanEat();
         } else {
-            Log.d(DebugLog,"LOG: Sent to doPlayerMove Procedure...");
-            doPlayerMove(LastValidSelection, ClickedButtonPos);
-
+            for (int i = 0; i < 8; i++)
+                for (int j = 0; j < 8; j++)
+                    if (view.getId() == BoardButtons[i][j].getId()) {
+                        ClickedButtonPos[0] = i;
+                        ClickedButtonPos[1] = j;
+                    }
+            Log.d(DebugLog, "LOG: onClick::ValidSelection:"+String.valueOf(ValidSelection)+" Clicked::"+String.valueOf(ClickedButtonPos[0])+String.valueOf(ClickedButtonPos[1]));
+            if (!ValidSelection) {
+                showAvailableMovements(ClickedButtonPos);
+            } else {
+                Log.d(DebugLog,"LOG: Sent to doPlayerMove Procedure...");
+                doPlayerMove(LastValidSelection, ClickedButtonPos);
+            }
         }
     }
 
@@ -112,6 +115,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++)
                 if (AvailableMovementBoard[i][j]) {
+                    BoardButtons[i][j].setBackgroundColor(Color.parseColor("#99FFD449"));
+                }
+    }
+
+    public boolean validateCanEat() {
+        boolean[][] CanEatBoard;
+        CanEatBoard= Checkers.getCanEatBoard(isBlackTurn);
+        boolean CanEat=false;
+        for (int i = 0; i < 8; i++)
+            for (int j = 0; j < 8; j++)
+                if (CanEatBoard[i][j]) {
+                    CanEat=true;
+                }
+        return CanEat;
+    }
+
+    public void showCanEat() {
+        boolean[][] CanEatBoard;
+        CanEatBoard= Checkers.getCanEatBoard(isBlackTurn);
+        for (int i = 0; i < 8; i++)
+            for (int j = 0; j < 8; j++)
+                if (CanEatBoard[i][j]) {
                     BoardButtons[i][j].setBackgroundColor(Color.parseColor("#99FFD449"));
                 }
     }
