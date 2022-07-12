@@ -203,10 +203,14 @@ public class CheckersGame {
 
 
     public void doMove (int[]InitialPos,int[]FinalPos,boolean Color) {
-        if (Color)
+        if (Color) {
             BlackPieces.Move(InitialPos,FinalPos);
-        if (!Color)
+            if (FinalPos[0]==7 && BlackBoard[FinalPos[0]][FinalPos[1]]==1) BlackPieces.Crown(FinalPos);
+        }
+        if (!Color) {
             RedPieces.Move(InitialPos,FinalPos);
+            if (FinalPos[0]==0 && RedBoard[FinalPos[0]][FinalPos[1]]==1) RedPieces.Crown(FinalPos);
+        }
         updateBoards();
     }
     public void doEat (int[]InitialPos,int[]FinalPos,int[]Eat,boolean Color) {
