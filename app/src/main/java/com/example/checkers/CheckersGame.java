@@ -150,8 +150,6 @@ public class CheckersGame {
         }
         return AvailableMovementBoard;
     }
-
-    /* TODO: Add King movement */
     public boolean[][] getAvailableMovementBoard(int[] Pos, boolean Color) {
         boolean[][] AvailableMovementBoard = new boolean[8][8];
         for (int i = 0; i < 8; i++)
@@ -197,6 +195,32 @@ public class CheckersGame {
             }
         }
         return AvailableMovementBoard;
+    }
+
+    /* TODO: Add King movement */
+    public boolean[][] getAvailableKingMovementBoard(int[] Pos) {
+        boolean[][] AvailableMovementBoard = new boolean[8][8];
+        for (int i = 0; i < 8; i++)
+            for (int j = 0; j < 8; j++) {
+                AvailableMovementBoard[i][j] = false;
+            }
+        for (int i=Pos[0]+1,j=Pos[1]+1;i<8 && j<8 && !Board[i][j];i++,j++) {
+            AvailableMovementBoard[i][j]=true;
+        }
+        for (int i=Pos[0]+1,j=Pos[1]-1;i<8 && j>=0 && !Board[i][j];i++,j--) {
+            AvailableMovementBoard[i][j]=true;
+        }
+        for (int i=Pos[0]-1,j=Pos[1]+1;i>=0 && j<8 && !Board[i][j];i--,j++) {
+            AvailableMovementBoard[i][j]=true;
+        }
+        for (int i=Pos[0]-1,j=Pos[1]-1;i>=0 && j>=0 && !Board[i][j];i--,j--) {
+            AvailableMovementBoard[i][j]=true;
+        }
+        return AvailableMovementBoard;
+    }
+    public boolean getCrownStatus(int[]Pos,boolean Color) {
+        if (Color) return BlackPieces.getCrownStatus(Pos);
+        else return RedPieces.getCrownStatus(Pos);
     }
 
 

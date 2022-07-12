@@ -56,7 +56,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (PlayerCanEat()) {
                 showAvailableEatMovements(ClickedButtonPos);
             } else {
-                showAvailableMovements(ClickedButtonPos);
+                if (Checkers.getCrownStatus(ClickedButtonPos,isBlackTurn)) {
+                    showAvailableKingMovements(ClickedButtonPos);
+                } else showAvailableMovements(ClickedButtonPos);
             }
         } else {
             if (PlayerCanEat()) {
@@ -109,6 +111,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             AvailableMovementBoard = Checkers.getAvailableMovementBoard(Pos, false);
             ValidSelection=true;
             Log.d(DebugLog, "LOG: showAvailableMovements::Valid Selection:: Red:"+String.valueOf(Pos[0])+String.valueOf(Pos[1]));
+        }
+        else Toast.makeText(this, "Selección inválida.", Toast.LENGTH_SHORT).show();
+        if (ValidSelection) {
+            LastValidSelection=Pos;
+        }
+        for (int i = 0; i < 8; i++)
+            for (int j = 0; j < 8; j++)
+                if (AvailableMovementBoard[i][j]) {
+                    BoardButtons[i][j].setBackgroundColor(Color.parseColor("#99FFD449"));
+                }
+    }
+    public void showAvailableKingMovements(int[] Pos) {
+        resetButtonsColor();
+        boolean[][] AvailableMovementBoard = new boolean[8][8];
+        int[][] BlackBoard = Checkers.getBlackBoard();
+        int[][] RedBoard = Checkers.getRedBoard();
+        if (isBlackTurn && BlackBoard[Pos[0]][Pos[1]] > 0) {
+            AvailableMovementBoard = Checkers.getAvailableKingMovementBoard(Pos);
+            ValidSelection=true;
+        }
+        else if (!isBlackTurn && RedBoard[Pos[0]][Pos[1]] > 0) {
+            AvailableMovementBoard = Checkers.getAvailableKingMovementBoard(Pos);
+            ValidSelection=true;
         }
         else Toast.makeText(this, "Selección inválida.", Toast.LENGTH_SHORT).show();
         if (ValidSelection) {
