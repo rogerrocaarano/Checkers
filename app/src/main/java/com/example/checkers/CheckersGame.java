@@ -197,7 +197,6 @@ public class CheckersGame {
         return AvailableMovementBoard;
     }
 
-    /* TODO: Add King movement */
     public boolean[][] getAvailableKingMovementBoard(int[] Pos) {
         boolean[][] AvailableMovementBoard = new boolean[8][8];
         for (int i = 0; i < 8; i++)

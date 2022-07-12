@@ -208,17 +208,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void doPlayerMove(int[]InitialPos,int[]FinalPos) {
-        Log.d(DebugLog,"LOG: doPlayerMove::InitialPos:"+String.valueOf(InitialPos[0])+String.valueOf(InitialPos[1])+" FinalPos:"+String.valueOf(FinalPos[0])+String.valueOf(FinalPos[1]));
         boolean[][] AvailableMovementBoard = new boolean[8][8];
         int[][] BlackBoard = Checkers.getBlackBoard();
         int[][] RedBoard = Checkers.getRedBoard();
-        if (isBlackTurn && BlackBoard[InitialPos[0]][InitialPos[1]] > 0)
+        if (Checkers.getCrownStatus(InitialPos,isBlackTurn))
+            AvailableMovementBoard= Checkers.getAvailableKingMovementBoard(InitialPos);
+        if (isBlackTurn && BlackBoard[InitialPos[0]][InitialPos[1]] == 1)
             AvailableMovementBoard = Checkers.getAvailableMovementBoard(InitialPos, true);
-        if (!isBlackTurn && RedBoard[InitialPos[0]][InitialPos[1]] > 0)
+        if (!isBlackTurn && RedBoard[InitialPos[0]][InitialPos[1]] == 1)
             AvailableMovementBoard = Checkers.getAvailableMovementBoard(InitialPos, false);
-        Log.d(DebugLog,"LOG: doPlayerMove::AvailableMovementBoard"+String.valueOf(AvailableMovementBoard[FinalPos[0]][FinalPos[1]]));
         if (AvailableMovementBoard[FinalPos[0]][FinalPos[1]]) {
-            Log.d(DebugLog,"LOG: doPlayerMove::Moving... InitialPos:"+String.valueOf(InitialPos[0])+String.valueOf(InitialPos[1])+" FinalPos:"+String.valueOf(FinalPos[0])+String.valueOf(FinalPos[1])+" isBlackTurn:"+String.valueOf(isBlackTurn));
             Checkers.doMove(InitialPos,FinalPos,isBlackTurn);
             resetButtonsColor();
             updateBoard();
