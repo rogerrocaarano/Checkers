@@ -149,6 +149,13 @@ public class CheckersGame {
         return CanEatBoard;
     }
 
+    public boolean[][] getAvailableMovementEatBoard(int[] Pos, boolean isBlack) {
+        if (getPlayerBoard(isBlack)[Pos[0]][Pos[1]] == 2) {
+            return getKingAvailableMovementEatBoard(Pos, isBlack);
+        } else return getRegularAvailableMovementEatBoard(Pos, isBlack);
+    }
+
+
     public boolean[][] getKingAvailableMovementEatBoard(int[] Pos, boolean isBlack) {
         boolean[][] AvailableMovementBoard = new boolean[8][8];
         for (int i = 0; i < 8; i++)
@@ -156,38 +163,88 @@ public class CheckersGame {
                 AvailableMovementBoard[i][j] = false;
             }
         for (int i = Pos[0] + 1, j = Pos[1] + 1; i < 7 && j < 7; i++, j++) {
-            if (Board[i][j] && !Board[i + 1][j + 1])
-                if (getPlayerBoard(!isBlack)[i][j] > 0)
-                    for (int i_Available = i + 1, j_Available = j + 1; i_Available < 7 && j_Available < 7; i_Available++, j_Available++)
-                        if (!Board[i_Available][j_Available])
-                            AvailableMovementBoard[i_Available][j_Available] = true;
+            if (getPlayerBoard(!isBlack)[i][j] > 0 && !Board[i + 1][j + 1])
+                for (int i_Available = i + 1, j_Available = j + 1;
+                     i_Available < 7 && j_Available < 7 && !Board[i_Available][j_Available];
+                     i_Available++, j_Available++) {
+                    AvailableMovementBoard[i_Available][j_Available] = true;
+                }
         }
         for (int i = Pos[0] + 1, j = Pos[1] - 1; i < 7 && j > 0; i++, j--) {
-            if (Board[i][j] && !Board[i + 1][j - 1])
-                if (getPlayerBoard(!isBlack)[i][j] > 0)
-                    for (int i_Available = i + 1, j_Available = j - 1; i_Available < 7 && j_Available > 0; i_Available++, j_Available--)
-                        if (!Board[i_Available][j_Available])
-                            AvailableMovementBoard[i_Available][j_Available] = true;
+            if (getPlayerBoard(!isBlack)[i][j] > 0 && !Board[i + 1][j - 1])
+                for (int i_Available = i + 1, j_Available = j - 1;
+                     i_Available < 7 && j_Available > 0 && !Board[i_Available][j_Available];
+                     i_Available++, j_Available--)
+                    AvailableMovementBoard[i_Available][j_Available] = true;
         }
         for (int i = Pos[0] - 1, j = Pos[1] + 1; i > 0 && j < 7; i--, j++) {
-            if (Board[i][j] && !Board[i - 1][j + 1])
-                if (getPlayerBoard(!isBlack)[i][j] > 0)
-                    for (int i_Available = i - 1, j_Available = j + 1; i_Available > 0 && j_Available < 7; i_Available--, j_Available++)
-                        if (!Board[i_Available][j_Available])
-                            AvailableMovementBoard[i_Available][j_Available] = true;
+            if (getPlayerBoard(!isBlack)[i][j] > 0 && !Board[i - 1][j + 1])
+                for (int i_Available = i - 1, j_Available = j + 1;
+                     i_Available > 0 && j_Available < 7 && !Board[i_Available][j_Available];
+                     i_Available--, j_Available++)
+                    AvailableMovementBoard[i_Available][j_Available] = true;
         }
         for (int i = Pos[0] - 1, j = Pos[1] - 1; i > 0 && j > 0; i--, j--) {
-            if (Board[i][j] && !Board[i - 1][j - 1])
-                if (getPlayerBoard(!isBlack)[i][j] > 0)
-                    for (int i_Available = i - 1, j_Available = j - 1; i_Available > 0 && j_Available > 0; i_Available--, j_Available--)
-                        if (!Board[i_Available][j_Available])
-                            AvailableMovementBoard[i_Available][j_Available] = true;
+            if (getPlayerBoard(!isBlack)[i][j] > 0 && !Board[i - 1][j - 1])
+                for (int i_Available = i - 1, j_Available = j - 1;
+                     i_Available > 0 && j_Available > 0 && !Board[i_Available][j_Available];
+                     i_Available--, j_Available--)
+                    AvailableMovementBoard[i_Available][j_Available] = true;
         }
         return AvailableMovementBoard;
     }
 
+    public int[] getKingEatPos(int[] InitialPos, int[] FinalPos, boolean isBlack) {
+        int[] EatPos = new int[2];
+        if (FinalPos[0] > InitialPos[0]) {
+            if (FinalPos[1] > InitialPos[1]) {
+                for (int i = InitialPos[0] + 1, j = InitialPos[1] + 1; i < FinalPos[0] && j < FinalPos[1]; i++, j++)
+                    if (getPlayerBoard(!isBlack)[i][j] > 0 && !Board[i + 1][j + 1]) {
+                        EatPos[0] = i;
+                        EatPos[1] = j;
+                    }
+            } else {
+                for (int i = InitialPos[0] + 1, j = InitialPos[1] - 1; i < FinalPos[0] && j > FinalPos[1]; i++, j--)
+                    if (getPlayerBoard(!isBlack)[i][j] > 0 && !Board[i + 1][j - 1]) {
+                        EatPos[0] = i;
+                        EatPos[1] = j;
+                    }
+            }
+        } else {
+            if (FinalPos[1] > InitialPos[1]) {
+                for (int i = InitialPos[0] - 1, j = InitialPos[1] + 1; i > FinalPos[0] && j < FinalPos[1]; i--, j++)
+                    if (getPlayerBoard(!isBlack)[i][j] > 0 && !Board[i - 1][j + 1]) {
+                        EatPos[0] = i;
+                        EatPos[1] = j;
+                    }
+            } else {
+                for (int i = InitialPos[0] - 1, j = InitialPos[1] - 1; i > FinalPos[0] && j > FinalPos[1]; i--, j--)
+                    if (getPlayerBoard(!isBlack)[i][j] > 0 && !Board[i - 1][j - 1]) {
+                        EatPos[0] = i;
+                        EatPos[1] = j;
+                    }
+            }
+        }
+        return EatPos;
+    }
 
-    public boolean[][] getAvailableMovementEatBoard(int[] Pos, boolean Color) {
+    public int[] getRegularEatPos(int[] InitialPos, int[] FinalPos, boolean isBlack) {
+        int[] EatPos = new int[2];
+        if (isBlack) {
+            EatPos[0] = FinalPos[0] - 1;
+            if (InitialPos[1] > FinalPos[1]) {
+                EatPos[1] = InitialPos[1] - 1;
+            } else EatPos[1] = InitialPos[1] + 1;
+        } else {
+            EatPos[0] = FinalPos[0] + 1;
+            if (InitialPos[1] > FinalPos[1]) {
+                EatPos[1] = InitialPos[1] - 1;
+            } else EatPos[1] = InitialPos[1] + 1;
+        }
+        return EatPos;
+    }
+
+    public boolean[][] getRegularAvailableMovementEatBoard(int[] Pos, boolean Color) {
         boolean[][] AvailableMovementBoard = new boolean[8][8];
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++) {
@@ -237,10 +294,11 @@ public class CheckersGame {
         }
         return AvailableMovementBoard;
     }
+
     public boolean[][] getAvailableMovementBoard(int[] Pos, boolean isBlack) {
-        if (getPlayerBoard(isBlack)[Pos[0]][Pos[1]]==2) {
+        if (getPlayerBoard(isBlack)[Pos[0]][Pos[1]] == 2) {
             return getAvailableKingMovementBoard(Pos);
-        } else return getRegularAvailableMovementBoard(Pos,isBlack);
+        } else return getRegularAvailableMovementBoard(Pos, isBlack);
     }
 
     public boolean[][] getRegularAvailableMovementBoard(int[] Pos, boolean Color) {
@@ -309,11 +367,6 @@ public class CheckersGame {
             AvailableMovementBoard[i][j] = true;
         }
         return AvailableMovementBoard;
-    }
-
-    public boolean getCrownStatus(int[] Pos, boolean Color) {
-        if (Color) return BlackPieces.getCrownStatus(Pos);
-        else return RedPieces.getCrownStatus(Pos);
     }
 
 

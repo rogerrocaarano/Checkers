@@ -73,7 +73,5 @@ public class CheckersPieces {
         Board[Pos[0]][Pos[1]] = 2;
     }
 
-    public boolean getCrownStatus(int[] Pos) {
-        return Board[Pos[0]][Pos[1]] == 2;
-    }
+
 }

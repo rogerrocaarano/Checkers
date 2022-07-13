@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String DebugLog;
     private boolean isBlackTurn;
     private boolean ValidSelection;
-    private int[]LastValidSelection;
+    private int[] LastValidSelection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         updateBoard();
         isBlackTurn = false;
-        ValidSelection=false;
-        LastValidSelection=new int[2];
+        ValidSelection = false;
+        LastValidSelection = new int[2];
     }
 
     @Override
@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         } else {
             if (PlayerCanEat()) {
-                doPlayerEat(LastValidSelection,ClickedButtonPos);
+                doPlayerEat(LastValidSelection, ClickedButtonPos);
             } else {
-                doPlayerMove(LastValidSelection,ClickedButtonPos);
+                doPlayerMove(LastValidSelection, ClickedButtonPos);
             }
         }
     }
@@ -95,13 +95,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void showAvailableMovements(int[] Pos) {
         resetButtonsColor();
         boolean[][] AvailableMovementBoard = new boolean[8][8];
-        if (Checkers.getPlayerBoard(isBlackTurn)[Pos[0]][Pos[1]]>0) {
+        if (Checkers.getPlayerBoard(isBlackTurn)[Pos[0]][Pos[1]] > 0) {
             AvailableMovementBoard = Checkers.getAvailableMovementBoard(Pos, isBlackTurn);
-            ValidSelection=true;
-        }
-        else Toast.makeText(this, "Selección inválida.", Toast.LENGTH_SHORT).show();
+            ValidSelection = true;
+        } else Toast.makeText(this, "Selección inválida.", Toast.LENGTH_SHORT).show();
         if (ValidSelection) {
-            LastValidSelection=Pos;
+            LastValidSelection = Pos;
         }
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++)
@@ -109,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     BoardButtons[i][j].setBackgroundColor(Color.parseColor("#99FFD449"));
                 }
     }
+
     public void showAvailableKingMovements(int[] Pos) {
         resetButtonsColor();
         boolean[][] AvailableMovementBoard = new boolean[8][8];
@@ -116,15 +116,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int[][] RedBoard = Checkers.getRedBoard();
         if (isBlackTurn && BlackBoard[Pos[0]][Pos[1]] > 0) {
             AvailableMovementBoard = Checkers.getAvailableKingMovementBoard(Pos);
-            ValidSelection=true;
-        }
-        else if (!isBlackTurn && RedBoard[Pos[0]][Pos[1]] > 0) {
+            ValidSelection = true;
+        } else if (!isBlackTurn && RedBoard[Pos[0]][Pos[1]] > 0) {
             AvailableMovementBoard = Checkers.getAvailableKingMovementBoard(Pos);
-            ValidSelection=true;
-        }
-        else Toast.makeText(this, "Selección inválida.", Toast.LENGTH_SHORT).show();
+            ValidSelection = true;
+        } else Toast.makeText(this, "Selección inválida.", Toast.LENGTH_SHORT).show();
         if (ValidSelection) {
-            LastValidSelection=Pos;
+            LastValidSelection = Pos;
         }
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++)
@@ -136,23 +134,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void showAvailableEatMovements(int[] Pos) {
         resetButtonsColor();
         boolean[][] AvailableMovementBoard = new boolean[8][8];
-        int[][] BlackBoard = Checkers.getBlackBoard();
-        int[][] RedBoard = Checkers.getRedBoard();
         if (validateCanEat(Pos)) {
-            if (isBlackTurn && BlackBoard[Pos[0]][Pos[1]] > 0) {
-                AvailableMovementBoard = Checkers.getAvailableMovementEatBoard(Pos, true);
-                ValidSelection=true;
-            }
-            else if (!isBlackTurn && RedBoard[Pos[0]][Pos[1]] > 0) {
-                AvailableMovementBoard = Checkers.getAvailableMovementEatBoard(Pos, false);
-                ValidSelection=true;
+            if (Checkers.getPlayerBoard(isBlackTurn)[Pos[0]][Pos[1]] > 0) {
+                AvailableMovementBoard = Checkers.getAvailableMovementEatBoard(Pos, isBlackTurn);
+                ValidSelection = true;
             }
         } else {
             Toast.makeText(this, "Puede comer con éstas fichas.", Toast.LENGTH_SHORT).show();
             showCanEat();
         }
         if (ValidSelection) {
-            LastValidSelection=Pos;
+            LastValidSelection = Pos;
         }
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++)
@@ -162,10 +154,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
     public boolean PlayerCanEat() {
         boolean[][] CanEatBoard = Checkers.getCanEatBoard(isBlackTurn);
-        boolean CanEat=false;
+        boolean CanEat = false;
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++)
                 if (CanEatBoard[i][j]) {
@@ -175,15 +166,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return CanEat;
     }
 
-    public boolean validateCanEat(int[]Pos) {
+    public boolean validateCanEat(int[] Pos) {
         boolean[][] CanEatBoard;
-        CanEatBoard= Checkers.getCanEatBoard(isBlackTurn);
+        CanEatBoard = Checkers.getCanEatBoard(isBlackTurn);
         return CanEatBoard[Pos[0]][Pos[1]];
     }
 
     public void showCanEat() {
         boolean[][] CanEatBoard;
-        CanEatBoard= Checkers.getCanEatBoard(isBlackTurn);
+        CanEatBoard = Checkers.getCanEatBoard(isBlackTurn);
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++)
                 if (CanEatBoard[i][j]) {
@@ -191,46 +182,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
     }
 
-    public void doPlayerMove(int[]InitialPos,int[]FinalPos) {
+    public void doPlayerMove(int[] InitialPos, int[] FinalPos) {
         boolean[][] AvailableMovementBoard = new boolean[8][8];
-        if (Checkers.getPlayerBoard(isBlackTurn)[InitialPos[0]][InitialPos[1]]>0)
-            AvailableMovementBoard=Checkers.getAvailableMovementBoard(InitialPos,isBlackTurn);
+        if (Checkers.getPlayerBoard(isBlackTurn)[InitialPos[0]][InitialPos[1]] > 0)
+            AvailableMovementBoard = Checkers.getAvailableMovementBoard(InitialPos, isBlackTurn);
         if (AvailableMovementBoard[FinalPos[0]][FinalPos[1]]) {
-            Checkers.doMove(InitialPos,FinalPos,isBlackTurn);
+            Checkers.doMove(InitialPos, FinalPos, isBlackTurn);
             resetButtonsColor();
             updateBoard();
-            ValidSelection=false;
-            isBlackTurn=!isBlackTurn;
+            ValidSelection = false;
+            isBlackTurn = !isBlackTurn;
         } else {
             resetButtonsColor();
             Toast.makeText(this, "Movimiento inválido", Toast.LENGTH_SHORT).show();
-            ValidSelection=false;
+            ValidSelection = false;
         }
     }
 
-    public void doPlayerEat(int[]InitialPos,int[]FinalPos) {
+    public void doPlayerEat(int[] InitialPos, int[] FinalPos) {
         boolean[][] AvailableMovementBoard = new boolean[8][8];
-        int[][] BlackBoard = Checkers.getBlackBoard();
-        int[][] RedBoard = Checkers.getRedBoard();
-        int[]Eat=new int[2];
-        if (isBlackTurn && BlackBoard[InitialPos[0]][InitialPos[1]] > 0)
-            AvailableMovementBoard = Checkers.getAvailableMovementEatBoard(InitialPos,true);
-        if (!isBlackTurn && RedBoard[InitialPos[0]][InitialPos[1]] > 0)
-            AvailableMovementBoard = Checkers.getAvailableMovementEatBoard(InitialPos,false);
+        int[] Eat;
+        if (Checkers.getPlayerBoard(isBlackTurn)[InitialPos[0]][InitialPos[1]] > 0)
+            AvailableMovementBoard = Checkers.getAvailableMovementEatBoard(InitialPos, isBlackTurn);
         if (AvailableMovementBoard[FinalPos[0]][FinalPos[1]]) {
-            if (FinalPos[1]>InitialPos[1]) Eat[1] = InitialPos[1] + 1;
-            else Eat[1] = InitialPos[1] - 1;
-            if (isBlackTurn) Eat[0] = InitialPos[0] + 1;
-            else Eat[0] = InitialPos[0] - 1;
-            Checkers.doEat(InitialPos,FinalPos,Eat,isBlackTurn);
+            if (Checkers.getPlayerBoard(isBlackTurn)[InitialPos[0]][InitialPos[1]] == 2) {
+                Eat = Checkers.getKingEatPos(InitialPos, FinalPos, isBlackTurn);
+            } else {
+                Eat = Checkers.getRegularEatPos(InitialPos, FinalPos, isBlackTurn);
+            }
+            Checkers.doEat(InitialPos, FinalPos, Eat, isBlackTurn);
             resetButtonsColor();
             updateBoard();
-            ValidSelection=false;
-            isBlackTurn=!isBlackTurn;
+            ValidSelection = false;
+            isBlackTurn = !isBlackTurn;
         } else {
             resetButtonsColor();
             Toast.makeText(this, "Movimiento inválido", Toast.LENGTH_SHORT).show();
-            ValidSelection=false;
+            ValidSelection = false;
         }
     }
 
