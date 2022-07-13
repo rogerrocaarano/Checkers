@@ -56,9 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (PlayerCanEat()) {
                 showAvailableEatMovements(ClickedButtonPos);
             } else {
-                if (Checkers.getCrownStatus(ClickedButtonPos,isBlackTurn)) {
-                    showAvailableKingMovements(ClickedButtonPos);
-                } else showAvailableMovements(ClickedButtonPos);
+                showAvailableMovements(ClickedButtonPos);
             }
         } else {
             if (PlayerCanEat()) {
@@ -97,14 +95,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void showAvailableMovements(int[] Pos) {
         resetButtonsColor();
         boolean[][] AvailableMovementBoard = new boolean[8][8];
-        int[][] BlackBoard = Checkers.getBlackBoard();
-        int[][] RedBoard = Checkers.getRedBoard();
-        if (isBlackTurn && BlackBoard[Pos[0]][Pos[1]] > 0) {
-            AvailableMovementBoard = Checkers.getAvailableMovementBoard(Pos, true);
-            ValidSelection=true;
-        }
-        else if (!isBlackTurn && RedBoard[Pos[0]][Pos[1]] > 0) {
-            AvailableMovementBoard = Checkers.getAvailableMovementBoard(Pos, false);
+        if (Checkers.getPlayerBoard(isBlackTurn)[Pos[0]][Pos[1]]>0) {
+            AvailableMovementBoard = Checkers.getAvailableMovementBoard(Pos, isBlackTurn);
             ValidSelection=true;
         }
         else Toast.makeText(this, "Selección inválida.", Toast.LENGTH_SHORT).show();
@@ -201,14 +193,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void doPlayerMove(int[]InitialPos,int[]FinalPos) {
         boolean[][] AvailableMovementBoard = new boolean[8][8];
-        int[][] BlackBoard = Checkers.getBlackBoard();
-        int[][] RedBoard = Checkers.getRedBoard();
-        if (Checkers.getCrownStatus(InitialPos,isBlackTurn))
-            AvailableMovementBoard= Checkers.getAvailableKingMovementBoard(InitialPos);
-        if (isBlackTurn && BlackBoard[InitialPos[0]][InitialPos[1]] == 1)
-            AvailableMovementBoard = Checkers.getAvailableMovementBoard(InitialPos, true);
-        if (!isBlackTurn && RedBoard[InitialPos[0]][InitialPos[1]] == 1)
-            AvailableMovementBoard = Checkers.getAvailableMovementBoard(InitialPos, false);
+        if (Checkers.getPlayerBoard(isBlackTurn)[InitialPos[0]][InitialPos[1]]>0)
+            AvailableMovementBoard=Checkers.getAvailableMovementBoard(InitialPos,isBlackTurn);
         if (AvailableMovementBoard[FinalPos[0]][FinalPos[1]]) {
             Checkers.doMove(InitialPos,FinalPos,isBlackTurn);
             resetButtonsColor();

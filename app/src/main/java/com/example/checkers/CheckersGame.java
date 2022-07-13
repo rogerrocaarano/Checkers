@@ -237,8 +237,13 @@ public class CheckersGame {
         }
         return AvailableMovementBoard;
     }
+    public boolean[][] getAvailableMovementBoard(int[] Pos, boolean isBlack) {
+        if (getPlayerBoard(isBlack)[Pos[0]][Pos[1]]==2) {
+            return getAvailableKingMovementBoard(Pos);
+        } else return getRegularAvailableMovementBoard(Pos,isBlack);
+    }
 
-    public boolean[][] getAvailableMovementBoard(int[] Pos, boolean Color) {
+    public boolean[][] getRegularAvailableMovementBoard(int[] Pos, boolean Color) {
         boolean[][] AvailableMovementBoard = new boolean[8][8];
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++) {
