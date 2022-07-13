@@ -36,9 +36,23 @@ public class CheckersGame {
     public int[][] getRedBoard() {
         return RedBoard;
     }
+    public int[][] getPlayerBoard(boolean isBlack) {
+        return isBlack ? getBlackBoard() : getRedBoard();
+    }
 
     /* TODO: Add king-eating conditions */
-    public boolean[][] getCanEatBoard(boolean Color) {
+    public boolean[][] getCanEatBoard(boolean isBlack) {
+        boolean[][]RegularCanEatBoard=getRegularCanEatBoard(isBlack);
+        boolean[][]KingCanEatBoard=getKingCanEatBoard(isBlack);
+        boolean[][]CanEatBoard=new boolean[8][8];
+        for (int i = 0; i < 8; i++)
+            for (int j = 0; j < 8; j++) {
+                if (RegularCanEatBoard[i][j]||KingCanEatBoard[i][j])
+                    CanEatBoard[i][j]=true;
+            }
+        return CanEatBoard;
+    }
+    public boolean[][] getRegularCanEatBoard(boolean isBlack) {
         boolean[][] CanEatBoard = new boolean[8][8];
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++) {
@@ -47,7 +61,7 @@ public class CheckersGame {
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++) {
                 /* For black Pieces */
-                if (Color && i<=5) {
+                if (isBlack && i<=5) {
                     switch (j) {
                         case 0: case 1: {
                             if (!Board[i + 2][j + 2])
@@ -73,7 +87,7 @@ public class CheckersGame {
                     }
                 }
                 /* For red Pieces */
-                if (!Color && i>=2) {
+                if (!isBlack && i>=2) {
                     switch (j) {
                         case 0: case 1: {
                             if (!Board[i - 2][j + 2])
@@ -97,6 +111,32 @@ public class CheckersGame {
                         }
                         break;
                     }
+                }
+            }
+        return CanEatBoard;
+    }
+    public boolean[][] getKingCanEatBoard(boolean isBlack) {
+        boolean[][] CanEatBoard = new boolean[8][8];
+        for (int i = 0; i < 8; i++)
+            for (int j = 0; j < 8; j++) {
+                CanEatBoard[i][j] = false;
+            }
+        for (int i_Pos = 0; i_Pos < 8; i_Pos++)
+            for (int j_Pos = 0; j_Pos < 8; j_Pos++) {
+                int[]Pos={i_Pos,j_Pos};
+                if (getPlayerBoard(isBlack)[i_Pos][j_Pos]==2) {
+                    for (int i = Pos[0] + 1, j = Pos[1] + 1; i < 7 && j < 7; i++, j++)
+                        if (Board[i][j] && getPlayerBoard(!isBlack)[i][j] > 0 && !Board[i + 1][j + 1])
+                            CanEatBoard[i_Pos][j_Pos] = true;
+                    for (int i = Pos[0] + 1, j = Pos[1] - 1; i < 7 && j > 0; i++, j--)
+                        if (Board[i][j] && getPlayerBoard(!isBlack)[i][j] > 0 && !Board[i + 1][j - 1])
+                            CanEatBoard[i_Pos][j_Pos] = true;
+                    for (int i = Pos[0] - 1, j = Pos[1] + 1; i > 0 && j < 7; i--, j++)
+                        if (Board[i][j] && getPlayerBoard(!isBlack)[i][j] > 0 && !Board[i - 1][j + 1])
+                            CanEatBoard[i_Pos][j_Pos] = true;
+                    for (int i = Pos[0] - 1, j = Pos[1] - 1; i > 0 && j > 0; i--, j--)
+                        if (Board[i][j] && getPlayerBoard(!isBlack)[i][j] > 0 && !Board[i - 1][j - 1])
+                            CanEatBoard[i_Pos][j_Pos] = true;
                 }
             }
         return CanEatBoard;

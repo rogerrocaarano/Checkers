@@ -76,14 +76,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++) {
                 if (BlackBoard[i][j] > 0) {
-                    Log.d(DebugLog, "LOG: BlackBoard" + String.valueOf(i) + String.valueOf(j) + ": " + String.valueOf(BlackBoard[i][j]));
                     if (BlackBoard[i][j] == 1)
                         BoardButtons[i][j].setImageResource(R.drawable.piece_black);
                     if (BlackBoard[i][j] == 2)
                         BoardButtons[i][j].setImageResource(R.drawable.piece_black_king);
                 }
                 if (RedBoard[i][j] > 0) {
-                    Log.d(DebugLog, "LOG: RedBoard" + String.valueOf(i) + String.valueOf(j) + ": " + String.valueOf(RedBoard[i][j]));
                     if (RedBoard[i][j] == 1)
                         BoardButtons[i][j].setImageResource(R.drawable.piece_red);
                     if (RedBoard[i][j] == 2)
@@ -91,7 +89,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 if (!Board[i][j]) {
                     BoardButtons[i][j].setImageResource(R.drawable.piece_transparent);
-                    Log.d(DebugLog, "LOG: Board::Transparent" + String.valueOf(i) + String.valueOf(j) + ": " + String.valueOf(RedBoard[i][j]));
                 }
             }
     }
@@ -105,12 +102,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (isBlackTurn && BlackBoard[Pos[0]][Pos[1]] > 0) {
             AvailableMovementBoard = Checkers.getAvailableMovementBoard(Pos, true);
             ValidSelection=true;
-            Log.d(DebugLog, "LOG: showAvailableMovements::Valid Selection:: Black:"+String.valueOf(Pos[0])+String.valueOf(Pos[1]));
         }
         else if (!isBlackTurn && RedBoard[Pos[0]][Pos[1]] > 0) {
             AvailableMovementBoard = Checkers.getAvailableMovementBoard(Pos, false);
             ValidSelection=true;
-            Log.d(DebugLog, "LOG: showAvailableMovements::Valid Selection:: Red:"+String.valueOf(Pos[0])+String.valueOf(Pos[1]));
         }
         else Toast.makeText(this, "Selección inválida.", Toast.LENGTH_SHORT).show();
         if (ValidSelection) {
@@ -155,12 +150,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (isBlackTurn && BlackBoard[Pos[0]][Pos[1]] > 0) {
                 AvailableMovementBoard = Checkers.getAvailableMovementEatBoard(Pos, true);
                 ValidSelection=true;
-                Log.d(DebugLog, "LOG: showAvailableEatMovements::Valid Selection:: Black:"+String.valueOf(Pos[0])+String.valueOf(Pos[1]));
             }
             else if (!isBlackTurn && RedBoard[Pos[0]][Pos[1]] > 0) {
                 AvailableMovementBoard = Checkers.getAvailableMovementEatBoard(Pos, false);
                 ValidSelection=true;
-                Log.d(DebugLog, "LOG: showAvailableEatMovements::Valid Selection:: Red:"+String.valueOf(Pos[0])+String.valueOf(Pos[1]));
             }
         } else {
             Toast.makeText(this, "Puede comer con éstas fichas.", Toast.LENGTH_SHORT).show();
@@ -179,13 +172,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public boolean PlayerCanEat() {
-        boolean[][] CanEatBoard;
-        CanEatBoard= Checkers.getCanEatBoard(isBlackTurn);
+        boolean[][] CanEatBoard = Checkers.getCanEatBoard(isBlackTurn);
         boolean CanEat=false;
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++)
                 if (CanEatBoard[i][j]) {
-                    CanEat=true;
+                    CanEat = true;
+                    break;
                 }
         return CanEat;
     }
@@ -193,8 +186,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean validateCanEat(int[]Pos) {
         boolean[][] CanEatBoard;
         CanEatBoard= Checkers.getCanEatBoard(isBlackTurn);
-        if (CanEatBoard[Pos[0]][Pos[1]]) return true;
-        else return false;
+        return CanEatBoard[Pos[0]][Pos[1]];
     }
 
     public void showCanEat() {
