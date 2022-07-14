@@ -391,4 +391,7 @@ public class CheckersGame {
             RedPieces.RmPiece(Eat);
         doMove(InitialPos, FinalPos, Color);
     }
+    public int[] getPiecesCount() {
+        return new int[]{BlackPieces.getPiecesCount(),RedPieces.getPiecesCount()};
+    }
 }

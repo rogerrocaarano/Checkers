@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.os.Debug;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import javax.xml.validation.Validator;
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BoardButtons = new ImageButton[8][8];
-        Checkers = new CheckersGame();
+
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++) {
                 String BoardButtonID = "B_" + i + j;
@@ -37,8 +40,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             for (int j = 0; j < 8; j++) {
                 BoardButtons[i][j].setOnClickListener(this);
             }
+        newGame();
+    }
+
+    public void newGame(){
+        Checkers = new CheckersGame();
         updateBoard();
         isBlackTurn = false;
+        PlayerTurnText();
+        PiecesText();
         ValidSelection = false;
         LastValidSelection = new int[2];
     }
@@ -97,28 +107,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         boolean[][] AvailableMovementBoard = new boolean[8][8];
         if (Checkers.getPlayerBoard(isBlackTurn)[Pos[0]][Pos[1]] > 0) {
             AvailableMovementBoard = Checkers.getAvailableMovementBoard(Pos, isBlackTurn);
-            ValidSelection = true;
-        } else Toast.makeText(this, "Selección inválida.", Toast.LENGTH_SHORT).show();
-        if (ValidSelection) {
-            LastValidSelection = Pos;
-        }
-        for (int i = 0; i < 8; i++)
-            for (int j = 0; j < 8; j++)
-                if (AvailableMovementBoard[i][j]) {
-                    BoardButtons[i][j].setBackgroundColor(Color.parseColor("#99FFD449"));
-                }
-    }
-
-    public void showAvailableKingMovements(int[] Pos) {
-        resetButtonsColor();
-        boolean[][] AvailableMovementBoard = new boolean[8][8];
-        int[][] BlackBoard = Checkers.getBlackBoard();
-        int[][] RedBoard = Checkers.getRedBoard();
-        if (isBlackTurn && BlackBoard[Pos[0]][Pos[1]] > 0) {
-            AvailableMovementBoard = Checkers.getAvailableKingMovementBoard(Pos);
-            ValidSelection = true;
-        } else if (!isBlackTurn && RedBoard[Pos[0]][Pos[1]] > 0) {
-            AvailableMovementBoard = Checkers.getAvailableKingMovementBoard(Pos);
             ValidSelection = true;
         } else Toast.makeText(this, "Selección inválida.", Toast.LENGTH_SHORT).show();
         if (ValidSelection) {
@@ -192,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             updateBoard();
             ValidSelection = false;
             isBlackTurn = !isBlackTurn;
+            PlayerTurnText();
         } else {
             resetButtonsColor();
             Toast.makeText(this, "Movimiento inválido", Toast.LENGTH_SHORT).show();
@@ -211,10 +200,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Eat = Checkers.getRegularEatPos(InitialPos, FinalPos, isBlackTurn);
             }
             Checkers.doEat(InitialPos, FinalPos, Eat, isBlackTurn);
+            PiecesText();
             resetButtonsColor();
             updateBoard();
             ValidSelection = false;
             isBlackTurn = !isBlackTurn;
+            PlayerTurnText();
         } else {
             resetButtonsColor();
             Toast.makeText(this, "Movimiento inválido", Toast.LENGTH_SHORT).show();
@@ -226,6 +217,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++)
                 BoardButtons[i][j].setBackgroundColor(Color.parseColor("#00FFFFFF"));
+    }
+
+    public void PlayerTurnText() {
+        String t = isBlackTurn ? "Juegan las negras" : "Juegan las rojas";
+        ((TextView)findViewById(R.id.PlayerTurn)).setText(t);
+
+    }
+    public void PiecesText() {
+        ((TextView)findViewById(R.id.Red_PiecesCount)).setText(String.valueOf("Fichas Rojas: "+Checkers.getPiecesCount()[1]));
+        ((TextView)findViewById(R.id.Black_PiecesCount)).setText(String.valueOf("Fichas Negras: "+Checkers.getPiecesCount()[0]));
+    }
+    public void RestartGame(View v) {
+        newGame();
     }
 
 
